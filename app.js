@@ -3,7 +3,7 @@
             {
                 "species": "Triceratops",
                 "weight": 13000,
-                "height": 114sdasd,
+                "height": 114,
                 "diet": "herbavor",
                 "where": "North America",
                 "when": "Late Cretaceous",
@@ -108,14 +108,33 @@
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareWeight(humanWeight, dinoWeight) {
+    function compareWeight(humanInfo, dinoWeight) {
+        let fact = ';'
+        if (humanInfo.weight > dinoWeight) {
+            fact = humanInfo.name + ' '
+        } else if (humanInfo.weight < dinoWeight) {
+            humanWeightIs = 'less';
+        } else {
+            humanWeightIs ='same';
+        }
 
     }
   
     // Create Dino Compare Method 2
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareHeight(humanHeight, dinoHeight) {
+    function compareHeight(humanInfo, dinoHeight) {
+        let humanHeight = convertFeetToInches(humanInfo.feets) + humanInfo.inches;
+        if (humanHeight > dinoHeight) {
+            let proportion = (humanHeight/dinoHeight);
+        } else if (humanHeight < dinoHeight) {
+            let proportion = (dinoHeight/humanTotalHeight)
+        } else {
 
+        }
+    }
+
+    function convertFeetToInches (feets) {
+        return feets * 12;
     }
 
     
