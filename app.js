@@ -3,7 +3,7 @@
             {
                 "species": "Triceratops",
                 "weight": 13000,
-                "height": 114,
+                "height": 114sdasd,
                 "diet": "herbavor",
                 "where": "North America",
                 "when": "Late Cretaceous",
