@@ -75,8 +75,14 @@
         ]
     // Create Dino Constructor
     function DinoCompared(dino) {
-        this.specie = dino.species;
+        this.species = dino.species;
         this.image = '/image/' + dino.species + '.png';
+        this.weight = dino.weight;
+        this.height = dino.height;
+        this.diet = dino.diet;
+        this.where = dino.where;
+        this.when = dino.when;
+        this.fact = dino.fact;
     };
 
     // Create Human Object
@@ -84,7 +90,7 @@
         species : 'Human',
         name: 'Alfredo',
         heightFeet: 300,
-        heightInchis: 234,
+        heightInchis: 200,
         weight: 28,
         diet :'Herbavor',
     };
@@ -95,9 +101,8 @@
         if (dino.species != 'Pigeon') {
             dinosCompared.push(new DinoCompared(dino));
         } 
-
     });
-    console.log(dinosCompared);
+ 
 
     dinos.splice(4, 0, { fuck: 'hell yeah'});
 
@@ -108,29 +113,37 @@
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareWeight(humanInfo, dinoWeight) {
-        let fact = ';'
-        if (humanInfo.weight > dinoWeight) {
-            fact = humanInfo.name + ' '
-        } else if (humanInfo.weight < dinoWeight) {
-            humanWeightIs = 'less';
+    DinoCompared.prototype.compareWeight = function(humanInfo) {
+        let fact = '';
+        let proportion = 0;
+        if (humanInfo.weight > this.weight) {
+            proportion = Math.round(humanInfo.weight/this.weight)
+            fact = ' and ' + proportion + ' times heavier.'
+        } else if (humanInfo.weight < this.weight) {
+            proportion = Math.round((this.weight/humanInfo.weight));
+            fact = ' and ' + proportion + 3 + ' times lighter.'
         } else {
-            humanWeightIs ='same';
+            humanWeightIs ='and the same weight';
         }
-
+        return fact;
     }
   
     // Create Dino Compare Method 2
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareHeight(humanInfo, dinoHeight) {
-        let humanHeight = convertFeetToInches(humanInfo.feets) + humanInfo.inches;
-        if (humanHeight > dinoHeight) {
-            let proportion = (humanHeight/dinoHeight);
+    DinoCompared.prototype.compareHeight =  function(humanInfo) {
+        let humanHeight = convertFeetToInches(humanInfo.heightFeet) + humanInfo.heightInchis;
+        let fact = '';
+        let proportion = 0;
+        if (humanHeight > this.height) {
+            proportion = Math.round((humanHeight/this.height));
+            fact = humanInfo.name + ' is ' + proportion + ' times taller';
         } else if (humanHeight < dinoHeight) {
-            let proportion = (dinoHeight/humanTotalHeight)
+            proportion = (this.height/humanTotalHeight)
+            fact = humanInfo.name + ' is ' + proportion + ' times smaller';
         } else {
-
+            fact = humanInfo.name + ' has the same height'; 
         }
+        return fact;
     }
 
     function convertFeetToInches (feets) {
@@ -140,10 +153,18 @@
     
     // Create Dino Compare Method 3
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareDiet(humanDiet, dinoDiet) {
-
+    function compareDiet(humanInfo, dinoDiet) {
+        let fact = ';'
+        if (humanInfo.diet === dinoDiet) {
+            fact = ' Surprisingly they both the same diet, ' + humanDiet;
+        } else {
+            fact = ' While ' + humanInfo.name + ' is an ' + humanInfo.diet + ' this dinosaur is and ' + dinoDiet;
+        }
+        return fact;
     }
 
+
+    console.log(dinosCompared[1].compareHeight(human) + dinosCompared[1].compareWeight(human));
 
     // Generate Tiles for each Dino in Array
   
