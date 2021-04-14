@@ -8,28 +8,28 @@ body {
 }
 
 h1 {
+    font-size:3em;
+}
+
+h2 {
     margin: 0;
     font-family: 'Frijole', cursive;
-    font-size: 3em;
+    font-size: 6em;
     font-weight: 400;
 }
 
-h2,
-h3 {
+h1,
+h3{
+    font-size:2em;
     font-family: 'Oswald', sans-serif;
 }
 
-@media (min-width: 650px) {
-    h1 {
-        font-size: 5em;
-    }
+h4 {
+    font-size: 3em;
+    font-family: 'Frijole';
+    margin: 0;
 }
 
-@media (min-width: 920px) {
-    h1 {
-        font-size: 8em;
-    }
-}
 
 p {
     font-weight: 100;
@@ -39,59 +39,54 @@ p {
 #grid {
     background: #fff url(images/tracks.png) no-repeat;
     background-size: cover;
-    display: flex;
-    margin: 2em;
+    display: grid;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    flex-wrap: wrap;
+    grid-template-columns: 33% 33% 33%;
 }
 
 .grid-item {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
+    padding:2em;
 }
 
+
+
+
 .grid-item:nth-child(1){
-    background: #009687f5;
+    background-color: #009687f5;
 }
 
 .grid-item:nth-child(2){
-    background: #dc7657f5;
+    background-color: #dc7657f5;
 }
 
 .grid-item:nth-child(3){
-    background: #4bb3c1fa;
+    background-color: #4bb3c1fa;
 }
 
 .grid-item:nth-child(4){
-    background: #fac069f9;
+    background-color: #fac069f9;
 }
 
 .grid-item:nth-child(5){
-    background: #67a866f9;
+    background-color: #67a866f9;
 }
 
 .grid-item:nth-child(6){
-    background: #b94169fa;
+    background-color: #b94169fa;
 }
 
 .grid-item:nth-child(7){
-    background: #7f62b3fa;
+    background-color: #7f62b3fa;
 }
 
 .grid-item:nth-child(8){
-    background: #9fc376f9;
+    background-color: #9fc376f9;
 }
 
 .grid-item:nth-child(9){
     background: #677bcbfa;
 }
 
-@media (min-width: 550px) {
-    #grid div {
-        width: calc(100% / 3);
-    }
-}
 
 .grid-item h3 {
     font-size: 2em;
@@ -99,22 +94,10 @@ p {
 }
 
 .grid-item img {
-    max-width: 100%;
-    padding-bottom: 1em;
+    max-width: 75%;
 }
 
-.grid-item p {
-    background: rgba(000,000,000, .3);
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 0.8em 0.8em 1.8em;
-    margin:0;
-    box-sizing: border-box;
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #fff;
-}
+
 
 /* Form Styles */
 .form-container {

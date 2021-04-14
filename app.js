@@ -76,7 +76,7 @@
     // Create Dino Constructor
     function DinoCompared(dino) {
         this.species = dino.species;
-        this.image = '/image/' + dino.species + '.png';
+        this.image = 'images/' + dino.species + '.png';
         this.weight = dino.weight;
         this.height = dino.height;
         this.diet = dino.diet;
@@ -92,7 +92,7 @@
         heightFeet: 300,
         heightInchis: 200,
         weight: 28,
-        diet :'Herbavor',
+        diet :'herbavor',
     };
 
     // Create Dino Objects
@@ -153,12 +153,12 @@
     
     // Create Dino Compare Method 3
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    function compareDiet(humanInfo, dinoDiet) {
+    DinoCompared.prototype.compareDiet = function(humanInfo)  {
         let fact = ';'
-        if (humanInfo.diet === dinoDiet) {
-            fact = ' Surprisingly they both the same diet, ' + humanDiet;
+        if (humanInfo.diet == this.diet) {
+            fact = ' Surprisingly they both have the same diet, ' + humanInfo.diet;
         } else {
-            fact = ' While ' + humanInfo.name + ' is an ' + humanInfo.diet + ' this dinosaur is and ' + dinoDiet;
+            fact = ' While ' + humanInfo.name + ' is an ' + humanInfo.diet + ' this dinosaur is and ' + this.diet;
         }
         return fact;
     }
@@ -167,8 +167,27 @@
     console.log(dinosCompared[1].compareHeight(human) + dinosCompared[1].compareWeight(human));
 
     // Generate Tiles for each Dino in Array
-  
-        // Add tiles to DOM
+    dinosCompared.forEach(element =>{
+        var headingTag = document.createElement('h4');
+        var headingText = document.createTextNode(element.species);
+        headingTag.appendChild(headingText);
+
+        var image = new Image();
+        image.src = element.image;
+
+        var pTag = document.createElement('p');
+        var pText = document.createTextNode(element.compareHeight(human) + element.compareWeight(human) + element.compareDiet(human));
+        pTag.appendChild(pText);
+
+        var gridItem = document.createElement('div');
+        gridItem.className = 'grid-item';
+        gridItem.appendChild(headingTag);
+        gridItem.appendChild(image);
+        gridItem.appendChild(pTag);
+
+        var element = document.getElementById('grid');
+        element.appendChild(gridItem);
+    })
 
     // Remove form from screen
 
