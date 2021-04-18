@@ -20,12 +20,12 @@ h2 {
 
 h1,
 h3{
-    font-size:2em;
+    font-size:3em;
     font-family: 'Oswald', sans-serif;
 }
 
 h4 {
-    font-size: 3em;
+    font-size: 2em;
     font-family: 'Frijole';
     margin: 0;
 }
@@ -94,7 +94,7 @@ p {
 }
 
 .grid-item img {
-    max-width: 75%;
+    max-width: 55%;
 }
 
 
@@ -154,4 +154,9 @@ select {
 .fine-print {
     display: block;
     font-size: 0.7em;
+}
+
+/* Other */
+.hide {
+    display: none;
 }
