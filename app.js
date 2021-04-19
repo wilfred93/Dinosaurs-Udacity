@@ -26,7 +26,7 @@ const getHumanData = () => {
 
 //Read JSON that contain Dinos
 const dinos = [];
-fetch("./dino.json")
+fetch('./dino.json')
 .then((res) => res.json())
 .then((data) => {
     data.Dinos.forEach(element => {
@@ -41,32 +41,30 @@ Dino.prototype.compareWeight = function(humanInfo) {
     let proportion = 0;
     if (humanInfo.weight > this.weight) {
         proportion = Math.round(humanInfo.weight/this.weight)
-        fact = ' and ' + proportion + ' times heavier.'
+        return  humanInfo.name + ' is ' + proportion + ' times heavier.'
     } else if (humanInfo.weight < this.weight) {
         proportion = Math.round((this.weight/humanInfo.weight));
-        fact = ' and ' + proportion + 3 + ' times lighter.'
+        return  humanInfo.name + ' is ' + proportion + 3 + ' times lighter.'
     } else {
-        humanWeightIs ='and the same weight';
+       return 'They both weight the same, ' + this.weight + ' lbs';
     }
-    return fact;
 }
 
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
 Dino.prototype.compareHeight =  function(humanInfo) {
     let humanHeight = convertFeetToInches(humanInfo.feet) + humanInfo.inches;
-    let fact = '';
+    console.log(humanHeight);
     let proportion = 0;
     if (humanHeight > this.height) {
         proportion = Math.round((humanHeight/this.height));
-        fact = humanInfo.name + ' is ' + proportion + ' times taller';
+        return humanInfo.name + ' is ' + proportion + ' times taller.';
     } else if (humanHeight < this.height) {
         proportion = Math.round(this.height/humanHeight)
-        fact = humanInfo.name + ' is ' + proportion + ' times smaller';
+        return  humanInfo.name + ' is ' + proportion + ' times smaller.';
     } else {
-        fact = humanInfo.name + ' has the same height'; 
+        return 'They both have the same Height,' + this.weight; 
     }
-    return fact;
 }
 
 // Create Dino Compare Method 3
@@ -112,7 +110,9 @@ function generateTiles() {
             if (element.species == 'Pigeon') {
                 factContent = 'All birds are Dinosaurs.'
             } else {
-                factContent = element.compareHeight(getHumanData()) + element.compareWeight(getHumanData()) + element.compareDiet(getHumanData());
+                //Group facts to choose them randomly
+                const facts = [element.compareHeight(getHumanData()), element.compareWeight(getHumanData()), element.compareDiet(getHumanData()), element.fact]; 
+                factContent = facts[Math.floor(Math.random() * facts.length)];
             }
             const pText = document.createTextNode(factContent);
             pTag.appendChild(pText);
